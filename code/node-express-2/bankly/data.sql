@@ -1,3 +1,7 @@
+DROP DATABASE IF EXISTS bankly;
+CREATE DATABASE bankly;
+
+\c bankly;
 
 CREATE TABLE users (
     username text PRIMARY KEY,
