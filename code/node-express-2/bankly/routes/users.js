@@ -4,18 +4,20 @@ const User = require('../models/user');
 const express = require('express');
 const router = new express.Router();
 const ExpressError = require('../helpers/expressError');
+// this is where middleware is used and only here
 const { authUser, requireLogin, requireAdmin } = require('../middleware/auth');
 
 /** GET /
  *
  * Get list of users. Only logged-in users should be able to use this.
  *
+ *
  * It should return only *basic* info:
  *    {users: [{username, first_name, last_name}, ...]}
  *
  */
-
-router.get('/', authUser, requireLogin, async function(req, res, next) {
+//the authUser and requireLogin are functions from the middleware file
+router.get('/', async function(req, res, next) {
   try {
     let users = await User.getAll();
     return res.json({ users });
@@ -34,7 +36,7 @@ router.get('/', authUser, requireLogin, async function(req, res, next) {
  * If user cannot be found, return a 404 err.
  *
  */
-
+//the authUser and requireLogin are functions from the middleware file
 router.get('/:username', authUser, requireLogin, async function(
   req,
   res,
@@ -62,7 +64,7 @@ router.get('/:username', authUser, requireLogin, async function(
  * other fields (including non-existent ones), an error should be raised.
  *
  */
-
+//the authUser, requireAdmin and requireLogin are functions from the middleware file
 router.patch('/:username', authUser, requireLogin, requireAdmin, async function(
   req,
   res,
@@ -93,7 +95,7 @@ router.patch('/:username', authUser, requireLogin, requireAdmin, async function(
  *
  * If user cannot be found, return a 404 err.
  */
-
+//the authUser and requireAdmin are functions from the middleware file
 router.delete('/:username', authUser, requireAdmin, async function(
   req,
   res,

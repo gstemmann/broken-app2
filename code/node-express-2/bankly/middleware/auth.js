@@ -5,6 +5,7 @@ const { SECRET_KEY } = require('../config');
 
 /** Authorization Middleware: Requires user is logged in. */
 
+//this function is also being used in various routes in users.js but in particular the first route
 function requireLogin(req, res, next) {
   try {
     if (req.curr_username) {
@@ -18,6 +19,7 @@ function requireLogin(req, res, next) {
 }
 
 /** Authorization Middleware: Requires user is logged in and is staff. */
+
 
 function requireAdmin(req, res, next) {
   try {
@@ -44,11 +46,14 @@ function requireAdmin(req, res, next) {
  *
  **/
 
+//this function is being used in various routes in users.js but in particular the first
+//route in the file, so is calling this function
 function authUser(req, res, next) {
   try {
     const token = req.body._token || req.query._token;
     if (token) {
       let payload = jwt.decode(token);
+      // current username is added to payload
       req.curr_username = payload.username;
       req.curr_admin = payload.admin;
     }

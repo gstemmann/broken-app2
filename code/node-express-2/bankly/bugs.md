@@ -1,0 +1,1 @@
+the first bug is in the users.js file in the get route of the first slash route int he docstrings, only username and lastname and phone is asked for

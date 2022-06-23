@@ -14,6 +14,8 @@ const createTokenForUser = require('../helpers/createToken');
  *
  */
 
+// in order for this route to work, the req.body object must contain { username, password, first_name, last_name, email, phone }
+
 router.post('/register', async function(req, res, next) {
   try {
     const { username, password, first_name, last_name, email, phone } = req.body;
@@ -34,6 +36,8 @@ router.post('/register', async function(req, res, next) {
  *  If incorrect username/password given, should raise 401.
  *
  */
+
+//this route is gonna need {username, password} in the req.body object
 
 router.post('/login', async function(req, res, next) {
   try {

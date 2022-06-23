@@ -2,6 +2,8 @@
 
 const express = require('express');
 const app = express();
+
+//no middleware present or required here
 const ExpressError = require("./helpers/expressError");
 
 
