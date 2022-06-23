@@ -17,7 +17,7 @@ const { authUser, requireLogin, requireAdmin } = require('../middleware/auth');
  *
  */
 //the authUser and requireLogin are functions from the middleware file
-router.get('/', async function(req, res, next) {
+router.get('/', requireLogin, async function(req, res, next) {
   try {
     let users = await User.getAll();
     return res.json({ users });
